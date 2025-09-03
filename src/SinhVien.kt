@@ -1,10 +1,10 @@
 class SinhVien{
     var ma: Int = 0
     var ten: String = ""
-    var tuoi: Int = 0
-    var dsMonHoc: MutableList<Pair<String, Double>> = mutableListOf()
+    var tuoi: Int? = 0
+    var dsMonHoc: MutableSet<MonHoc> = mutableSetOf()
 
-    constructor(ma: Int, ten: String, tuoi: Int, dsMonHoc: MutableList<Pair<String, Double>>){
+    constructor(ma: Int,ten: String, tuoi: Int?, dsMonHoc: MutableSet<MonHoc> = mutableSetOf()){
         this.ma = ma
         this.ten = ten
         this.tuoi = tuoi
@@ -16,16 +16,25 @@ class SinhVien{
             return 0.0
         }
         var tong = 0.0
-        for((mon, diem) in dsMonHoc) {
-            tong += diem
+        var tongTinChi = dsMonHoc.sumOf { it.soTinChi }
+        for(mh in dsMonHoc) {
+            tong += mh.diem*mh.soTinChi
         }
-        return (tong / dsMonHoc.size).let { String.format("%.2f", it).toDouble() }
+        return (tong / tongTinChi).let { String.format("%.2f", it).toDouble() }
     }
 
-    fun xuat(){
+    fun xuat() {
         println("MSSV: $ma")
-        println("Ho va ten: $ten")
-        println("Tuoi: $tuoi")
-        println("Diem TB: ${tinhDiemTB()}")
+        println("Họ tên: $ten")
+        println("Tuổi: $tuoi")
+        if (dsMonHoc.isEmpty()) {
+            println("Môn học: (chưa có)")
+        } else {
+            println("Môn học:")
+            dsMonHoc.forEachIndexed { i, mh ->
+                println("  ${i + 1}. ${mh.ten}: ${mh.diem}")
+            }
+        }
+        println("Điểm TB: ${tinhDiemTB()}")
     }
 }
