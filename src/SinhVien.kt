@@ -1,24 +1,24 @@
-class SinhVien{
+class SinhVien {
     var ma: Int = 0
     var ten: String = ""
     var tuoi: Int? = 0
     var dsMonHoc: MutableSet<MonHoc> = mutableSetOf()
 
-    constructor(ma: Int,ten: String, tuoi: Int?, dsMonHoc: MutableSet<MonHoc> = mutableSetOf()){
+    constructor(ma: Int, ten: String, tuoi: Int?, dsMonHoc: MutableSet<MonHoc> = mutableSetOf()) {
         this.ma = ma
         this.ten = ten
         this.tuoi = tuoi
         this.dsMonHoc = dsMonHoc
     }
 
-    fun tinhDiemTB(): Double{
-        if(dsMonHoc.isEmpty()){
+    fun tinhDiemTB(): Double {
+        if (dsMonHoc.isEmpty()) {
             return 0.0
         }
         var tong = 0.0
         var tongTinChi = dsMonHoc.sumOf { it.soTinChi }
-        for(mh in dsMonHoc) {
-            tong += mh.diem*mh.soTinChi
+        for (mh in dsMonHoc) {
+            tong += mh.diem * mh.soTinChi
         }
         return (tong / tongTinChi).let { String.format("%.2f", it).toDouble() }
     }
