@@ -1,3 +1,5 @@
+package task1
+
 fun main(){
     demoVarAndVal()
     demoDataType()

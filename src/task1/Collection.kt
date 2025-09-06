@@ -1,4 +1,7 @@
+package task1
+
 import kotlin.collections.fill
+import kotlin.collections.iterator
 import kotlin.collections.reverse
 import kotlin.collections.shuffle
 import kotlin.collections.sort

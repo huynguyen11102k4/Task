@@ -1,3 +1,5 @@
+package task1
+
 fun main() {
     //1. if-else
     val a = 5
