@@ -1,30 +1,46 @@
 package task2
 
 fun main() {
-    //Class & Object
+    /* Class & Object */
     val student1 = Student("Hy", 20)
     student1.displayInfo()
     StudentRepo.addStudent(student1)
     println(StudentRepo.getAllStudents())
 
-    //Constructor
+    /* Constructor */
     val car = Car("Toyota", "Camry")
     car.displayInfo()
     val bike = Bike("Wave", "Alpha")
     val square = Rectangle(5.0)
     println(square.area())
 
-    //Inheritance
+    /* Inheritance */
     val employee = Employee("Huy", 20, "Intern Android Dev")
     employee.introduce()
     employee.birthday()
+    val doctor = Doctor("An", 30, "Cardiologist")
+    doctor.introduce()
+    // Kế thừa đơn, đa interface không bị giới hạn
+    val developer = Developer("Huy", 21, "Intern")
+    developer.introduce()
 
-    //Interface & Abstract class
+    /* Interface & Abstract class */
     val teacher = Teacher("Toi", 40, "Math")
     println(teacher.getInfo())
     val cat = Cat()
     cat.sound()
     cat.sleep()
+    //Functional interface - SAM interface (Interface chỉ có một hàm trừu tượng có thể viết gọn hơn bằng lambda)
+    val repo = PersonRepo{ id ->
+        object : PersonInfo{
+            override val id: Int = id
+            override fun getInfo(): String {
+                return "Person ID: $id"
+            }
+        }
+    }
+    val person = repo.getPerson(21)
+    println(person.getInfo())
 
     /* Class Types */
     //Data class
@@ -50,7 +66,7 @@ fun main() {
     val school = School()
     school.helloStudent("Charlie")
 
-    //Singleton & Companion Object
+    /* Singleton & Companion Object */
     println(Department.getDepartmentInfo())
     val university = University.create("HUST")
     println("University: ${university.name}")
