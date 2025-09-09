@@ -2,10 +2,24 @@ package task2
 
 fun main() {
     /* Class & Object */
+    // Class
     val student1 = Student("Hy", 20)
     student1.displayInfo()
+    // Object Declaration - Singleton
     StudentRepo.addStudent(student1)
     println(StudentRepo.getAllStudents())
+    // Object Expression - Anonymous class
+    val per = object : Person("Huy", 21) { // Kế thừa Person
+        fun displayInfo() {
+            println("Person Name: $name, Age: $age")
+        }
+    }
+    val hello = object { // Không kế thừa
+        val name = "Huy"
+        override fun toString(): String {
+            return "Hello $name"
+        }
+    }
 
     /* Constructor */
     val car = Car("Toyota", "Camry")
@@ -64,7 +78,7 @@ fun main() {
     val inner = Outer().Inner()
     inner.innerFunction()
     val school = School()
-    school.helloStudent("Charlie")
+    school.helloStudent("Huy")
 
     /* Singleton & Companion Object */
     println(Department.getDepartmentInfo())
